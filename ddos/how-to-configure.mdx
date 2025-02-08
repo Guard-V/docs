@@ -31,9 +31,9 @@ We strongly recommend starting with a "deny all" rule and then explicitly allowi
 <Steps>
   <Step title="Create Default Deny Rule">
     1. Click "Create New Edge Rule"
-    2. Set Source IP to "0.0.0.0/0" (all IPs)
+    2. Select "ANY" for protocol
     3. Set Destination to your protected IP
-    4. Select "ANY" for protocol
+    4. Set Source IP to "0.0.0.0/0" (all IPs)
     5. Set Priority to "1" (highest priority)
     6. Set Action to "Drop"
     7. Add description: "Drop All Traffic"
