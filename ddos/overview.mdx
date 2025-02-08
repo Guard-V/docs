@@ -1,0 +1,46 @@
+---
+title: 'DDoS Protection Overview'
+description: 'Multi-layered DDoS protection system'
+icon: 'shield'
+---
+
+![DDoS Protection Layers](http://images.guardv.net/DDoS_Protection_GuardV.png)
+
+## Multi-Layer DDoS Protection
+
+The DDoS protection infrastructure implements a sophisticated multi-layered defense system, intelligently designed to combat various attack vectors while ensuring optimal performance for your services.
+
+### 1. Volumetric Filtering
+
+The volumetric filtering system is the first line of defense against large-scale attacks, such as amplification and reflection attacks. We utilize anycast networking to distribute the load across different Points of Presence (POPs), enhancing our ability to mitigate large-scale attacks. The pre-filtering mechanism is capable of filtering out most of the attack volume.
+
+### 2. Edge Firewall
+
+With great precision, the flexible firewall allows users to control traffic at the edge of the network. The ability to create and modify firewall rules instantly empowers users to allow, deny, or rate limit traffic based on specific protocols, ports, and packet states.
+
+### 3. General UDP & TCP Filtering
+
+General UDP & TCP Filtering employs advanced in-house developed algorithms and performs deep packet inspection to validate data packets. By tracking connections through stateful packet inspection, the system maintains a record of active connections and their states, allowing it to differentiate between legitimate traffic and potential threats. Additionally, the system dynamically adjusts its filtering based on real-time traffic patterns, offering a responsive defense against potential threats by adapting to changing conditions.
+
+### 4. Anomaly Detection
+
+Advanced machine learning algorithms enhance security through the anomaly detection system, which identifies and blocks deviating network traffic in real-time. This proactive approach protects services from unknown attack patterns. Continuously learning from historical traffic patterns, the system improves its accuracy over time, effectively mitigating complex attack patterns while minimizing false positives through behavioral analysis.
+
+### 5. Application Filters
+
+Specific filters have been created for certain applications, allowing only traffic that meets payload and traffic patterns of the application. Any traffic that fails to comply is automatically blocked, ensuring that only valid and necessary data gets through. Custom application filters can also be developed upon request. Currently, the following filters are available:
+
+- FiveM
+- Wireguard
+- OpenVPN
+- Source Engine
+
+
+
+<Note> For FiveM, a special port range has been implemented from 30000 to 32000. FiveM servers need to run within this range to work properly. However, this does not mean that application filters no longer need to be applied; application filters must still be enforced for FiveM servers to ensure optimal DDoS Protection.</Note>
+
+## Time to Mitigate
+
+Our DDoS protection system is built for quick responses to threats. Known attack signatures are blocked immediately. For unknown attack patterns, detection and mitigation happens within 10 seconds.
+
+
