@@ -8,39 +8,41 @@ icon: 'shield'
 
 ## Multi-Layer DDoS Protection
 
-The DDoS protection infrastructure implements a sophisticated multi-layered defense system, intelligently designed to combat various attack vectors while ensuring optimal performance for your services.
+Our DDoS protection infrastructure uses a comprehensive multi-layered approach to defend against attacks. Each layer is designed to handle specific types of threats while maintaining optimal performance for your services.
 
 ### 1. Volumetric Filtering
 
-The volumetric filtering system is the first line of defense against large-scale attacks, such as amplification and reflection attacks. We utilize anycast networking to distribute the load across different Points of Presence (POPs), enhancing our ability to mitigate large-scale attacks. The pre-filtering mechanism is capable of filtering out most of the attack volume.
+The first line of defense tackles large-scale DDoS attacks like UDP amplification and reflection attacks. We leverage anycast networking to spread incoming traffic across multiple Points of Presence (POPs), enhancing our ability to mitigate large-scale attacks. The pre-filtering mechanism is capable of filtering out most of the attack volume.
 
 ### 2. Edge Firewall
 
-With great precision, the flexible firewall allows users to control traffic at the edge of the network. The ability to create and modify firewall rules instantly empowers users to allow, deny, or rate limit traffic based on specific protocols, ports, and packet states.
+The edge firewall puts you in control of your traffic filtering. You can instantly deploy and modify rules to allow, block, or rate-limit traffic based on specific protocols, ports, and connection states - all at the edge of our network.
 
 ### 3. General UDP & TCP Filtering
 
-General UDP & TCP Filtering employs advanced in-house developed algorithms and performs deep packet inspection to validate data packets. By tracking connections through stateful packet inspection, the system maintains a record of active connections and their states, allowing it to differentiate between legitimate traffic and potential threats. Additionally, the system dynamically adjusts its filtering based on real-time traffic patterns, offering a responsive defense against potential threats by adapting to changing conditions.
+General UDP & TCP Filtering employs advanced in-house developed algorithms and performs deep packet inspection to validate data packets. Using stateful packet inspection, we track and verify active connections to distinguish between legitimate users and potential threats. The system continuously adapts its filtering rules based on real-time traffic patterns, providing dynamic protection against emerging threats.
 
 ### 4. Anomaly Detection
 
-Advanced machine learning algorithms enhance security through the anomaly detection system, which identifies and blocks deviating network traffic in real-time. This proactive approach protects services from unknown attack patterns. Continuously learning from historical traffic patterns, the system improves its accuracy over time, effectively mitigating complex attack patterns while minimizing false positives through behavioral analysis.
+Machine learning-powered anomaly detection acts as an intelligent guardian, identifying and blocking suspicious traffic patterns in real-time. This proactive approach protects services from unknown attack patterns. Continuously learning from historical traffic patterns, the system improves its accuracy over time, effectively mitigating complex attack patterns while minimizing false positives through behavioral analysis.
 
 ### 5. Application Filters
 
-Specific filters have been created for certain applications, allowing only traffic that meets payload and traffic patterns of the application. Any traffic that fails to comply is automatically blocked, ensuring that only valid and necessary data gets through. Custom application filters can also be developed upon request. Currently, the following filters are available:
+We've developed specialized filters for specific applications to ensure only legitimate traffic of that application gets through. These filters verify both payload contents and traffic patterns, automatically blocking any traffic that doesn't match the expected behavior. We currently support:
 
 - FiveM
 - Wireguard
 - OpenVPN
 - Source Engine
 
+Custom filters can be developed for other applications upon request.
 
-
-<Note> For FiveM, a special port range has been implemented from 30000 to 32000. FiveM servers need to run within this range to work properly. However, this does not mean that application filters no longer need to be applied; application filters must still be enforced for FiveM servers to ensure optimal DDoS Protection.</Note>
+<Note>
+For FiveM servers, we've allocated a dedicated port range from 30000 to 32000. Your FiveM servers must operate within this range for proper functionality. Remember that even when using these designated ports, you'll still need to apply the FiveM application filter for complete DDoS protection.
+</Note>
 
 ## Time to Mitigate
 
-Our DDoS protection system is built for quick responses to threats. Known attack signatures are blocked immediately. For unknown attack patterns, detection and mitigation happens within 10 seconds.
+Our protection system is engineered for rapid response. Known attack patterns are blocked instantly, while new, previously unseen attack types are typically detected and mitigated within 10 seconds.
 
 

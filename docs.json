@@ -30,7 +30,6 @@
           {
             "group": "Information",
             "pages": [
-              "information/network",
               "information/hardware"
             ]
           }

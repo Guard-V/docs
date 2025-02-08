@@ -1,59 +1,98 @@
 ---
 title: 'How to Configure'
-description: 'Add image, video, and other HTML elements'
+description: 'Learn how to configure our DDoS protection.'
 icon: 'gear'
 ---
 
-<img
-  style={{ borderRadius: '0.5rem' }}
-  src="https://mintlify-assets.b-cdn.net/bigbend.jpg"
-/>
+This guide will walk you through configuring DDoS protection for your infrastructure using Edge Rules and Application Filters. We'll cover best practices and step-by-step instructions for securing your services.
 
-## Image
+## Edge Rules Configuration
 
-### Using Markdown
+Edge Rules allow you to control traffic flow based on various criteria like IP addresses, protocols, and packet characteristics.
 
-The [markdown syntax](https://www.markdownguide.org/basic-syntax/#images) lets you add images using the following code
+<Frame caption="Edge Rules management interface showing existing rules and their priorities">
+  <img src="https://images.guardv.net/Shield_Panel_Edge_Rules.png" />
+</Frame>
 
-```md
-![title](/path/image.jpg)
-```
+### Best Practice: Default Deny Rule
 
-Note that the image file size must be less than 5MB. Otherwise, we recommend hosting on a service like [Cloudinary](https://cloudinary.com/) or [S3](https://aws.amazon.com/s3/). You can then use that URL and embed.
+We strongly recommend starting with a "deny all" rule and then explicitly allowing only necessary traffic. Here's how to set this up:
 
-### Using Embeds
+<Note>
+  Edge Rules use a dynamic priority system and follow a first-match principle. Rules are evaluated from highest priority (lowest number) 
+  to lowest priority, and processing stops at the first matching rule. For example, if a packet matches a rule with priority 1, rules with 
+  priority 2 and higher will not be evaluated. This makes rule priority crucial for proper traffic filtering.
+  
+  When creating a new rule, you can only assign a priority up to (highest existing priority + 1). If you insert a rule between existing 
+  rules (e.g., adding a rule with priority 4), all subsequent rules will automatically shift down (the existing priority 4 becomes 5, 
+  5 becomes 6, and so on). This helps maintain organized rule management while preventing priority gaps.
+</Note>
 
-To get more customizability with images, you can also use [embeds](/writing-content/embed) to add images
+<Steps>
+  <Step title="Create Default Deny Rule">
+    1. Click "Create New Edge Rule"
+    2. Set Source IP to "0.0.0.0/0" (all IPs)
+    3. Set Destination to your protected IP
+    4. Select "ANY" for protocol
+    5. Set Priority to "1" (highest priority)
+    6. Set Action to "Drop"
+    7. Add description: "Drop All Traffic"
+  </Step>
+  <Step title="Allow Specific Services">
+    Create subsequent rules with higher priority numbers to allow specific services:
+    - Priority 2: Allow SSH (TCP port 22)
+    - Priority 3: Allow HTTP/HTTPS (TCP ports 80/443)
+    - Priority 4: Allow other required services
+  </Step>
+</Steps>
 
-```html
-<img height="200" src="/path/image.jpg" />
-```
+## Application Filters
 
-## Embeds and HTML elements
+Application Filters ensure only legitimate traffic of specific applications gets through and reach your server. 
 
-<iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/4KzFe50RQkQ"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen
-  style={{ width: '100%', borderRadius: '0.5rem' }}
-></iframe>
+<Frame caption="Application Filter configuration showing FiveM game server protection">
+  <img src="https://images.guardv.net/Shield_Panel_Port_Automation.png" />
+</Frame>
 
-<br />
+### Setting Up Application Filters
 
-<Tip>
+<Steps>
+  <Step title="Access Port Automation">
+    Navigate to the Port Automation section in the dashboard
+  </Step>
+  <Step title="Create New Application Shield">
+    Click "Create New Application Shield" button
+  </Step>
+  <Step title="Configure Application Settings">
+    1. Enter your Destination IP
+    2. Specify the Application Port
+    3. Select the Application Type (e.g., FiveM, Wireguard, OpenVPN, Source Engine)
+  </Step>
+</Steps>
 
-Mintlify supports [HTML tags in Markdown](https://www.markdownguide.org/basic-syntax/#html). This is helpful if you prefer HTML tags to Markdown syntax, and lets you create documentation with infinite flexibility.
+## Advanced Configuration Tips
 
-</Tip>
+### Rate Limiting
 
-### iFrames
+When creating Edge Rules, consider setting appropriate rate limits, two types or rate limits are available:
 
-Loads another HTML page within the document. Most commonly used for embedding videos.
+- **Ratelimit**: This defines the maximum number of packets allowed per second (1-2500000 packets) per source IP. If the source IP exceeds this limit, the packet will be dropped.
 
-```html
-<iframe src="https://www.youtube.com/embed/4KzFe50RQkQ"> </iframe>
-```
+- **Ratelimit Burst**: This setting allows for short bursts of traffic (1-250000 packets). It uses a token bucket algorithm, where tokens are added to a "bucket" at a fixed rate. Each packet sent removes a token. If the bucket is empty, additional packets are dropped. Each source IP has it's own "bucket".
+
+### Feature Matching
+
+Use Feature Matching to fine-tune your protection:
+- **State Type**: Configure connection state matching
+  - NEW: Match packets that start a new connection
+  - ESTABLISHED: Match packets belonging to an existing connection
+  - RELATED: Match packets related to, but not part of, an existing connection
+  - INVALID: Match packets that don't belong to any known connection
+
+- **Packet Length**: Set valid packet size ranges (1-65535 bytes)
+  - Helps identify and filter abnormal packet sizes
+  - Common legitimate packet sizes:
+    - TCP packets: typically 40-1500 bytes
+    - UDP gaming traffic: often 100-300 bytes
+    - HTTP/HTTPS: variable, but usually under 1500 bytes
+
