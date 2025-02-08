@@ -8,7 +8,7 @@ This guide will walk you through configuring DDoS protection for your infrastruc
 
 ## Edge Rules Configuration
 
-Edge Rules allow you to control traffic flow based on various criteria like IP addresses, protocols, and packet characteristics.
+Edge Rules allow you to control traffic flows based on various criteria like IP addresses, protocols, and packet characteristics.
 
 <Frame caption="Edge Rules management interface showing existing rules and their priorities">
   <img src="https://images.guardv.net/Shield_Panel_Edge_Rules.png" />
@@ -40,9 +40,9 @@ We strongly recommend starting with a "deny all" rule and then explicitly allowi
   </Step>
   <Step title="Allow Specific Services">
     Create subsequent rules with higher priority numbers to allow specific services:
-    - Priority 2: Allow SSH (TCP port 22)
-    - Priority 3: Allow HTTP/HTTPS (TCP ports 80/443)
-    - Priority 4: Allow other required services
+    - Priority 1: Allow SSH (TCP port 22)
+    - Priority 2: Allow HTTP/HTTPS (TCP ports 80/443)
+    - Priority 3: Allow other required services
   </Step>
 </Steps>
 
