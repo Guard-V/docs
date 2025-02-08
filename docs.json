@@ -11,7 +11,7 @@
     "light": "#0978FF",
     "dark": "#0978FF"
   },
-  "favicon": "https://images.guardv.net/GuardV_Favicon.ico",
+  "favicon": "/Logo/GuardV_Favicon.ico",
   "navigation": {
         "groups": [
           {
@@ -23,12 +23,14 @@
           {
             "group": "DDoS Protection",
             "pages": [
-              "ddos/overview"
+              "ddos/overview",
+              "ddos/how-to-configure"
             ]
           },
           {
             "group": "Information",
             "pages": [
+              "information/network",
               "information/hardware"
             ]
           }
