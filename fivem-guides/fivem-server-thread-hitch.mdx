@@ -25,68 +25,62 @@ Given our enterprise-grade hardware, including AMD Ryzen 9 5950X processors, hig
 
 If you're experiencing thread hitch warnings, your server may require additional resources or script optimization rather than hardware upgrades.
 
-## Step 2: Profile Your FiveM Server Resources
+## Step 2: Look at Your Server's Performance
 
-FiveM includes built-in profiling tools to identify problematic scripts. Follow these precise steps:
+FiveM has built-in tools to help you spot which scripts are slowing things down. Here's what to do:
 
-1. Access your FiveM server console through txAdmin or your direct console
-2. Execute this command to record server performance for 500 milliseconds:
+1. Open your server console using txAdmin or directly connect to it.
+2. Run this command to record performance for 500 milliseconds:
    ```
    profiler record 500
    ```
-
-3. Save the results to a file:
+3. Save the results:
    ```
    profiler save fivem_performance
    ```
-
-4. View the detailed performance analysis:
+4. View the detailed report:
    ```
    profiler view fivem_performance
    ```
 
-This generates a link to a comprehensive performance report. Open this link in Google Chrome for optimal visualization. The report clearly identifies which FiveM resources are consuming excessive processing time.
+This gives you a link to a performance report. Open it in Chrome for the best view and check out which scripts are causing delays.
 
-## Step 3: Resolve FiveM Server Thread Hitches
+## Step 3: Fix the Hitch Warnings
 
-After identifying the problematic scripts, implement one of these approaches:
+Once you know which scripts are acting up, you have two main options:
 
-### Approach 1: Optimize Your FiveM Resources
+### Option 1: Improve Your Scripts
 
-If the scripts are essential to your server, utilize these optimization techniques:
+If you need the script to run, try these fixes:
 
-1. Update resources to their latest versions to benefit from performance improvements
-2. Refactor inefficient Lua or JavaScript code:
-   - Eliminate unnecessary loops
-   - Reduce resource-intensive operation frequency
-   - Implement event-based processing instead of continuous checks
-3. Migrate intensive operations to asynchronous threads when possible
-4. Decompose large resources into smaller, more efficient components
+1. Update it to the latest version.
+2. Clean up your Lua or JavaScript code:
+   - Remove unnecessary loops
+   - Lower the frequency of heavy operations
+   - Use event-based triggers instead of constant checks
+3. Run heavy tasks asynchronously if possible.
+4. Break big scripts into smaller, easier-to-manage parts.
 
-### Approach 2: Replace or Remove Problematic Resources
+### Option 2: Remove or Swap Out The Script
 
-If optimization isn't feasible, follow this systematic approach:
+If optimizing doesn't work:
 
-1. Temporarily disable the resource by commenting it out in your server.cfg file:
+1. Temporarily disable the script by commenting it out in your server.cfg:
    ```
-   # Comment out problematic resource
+   # Comment out the problematic resource
    # ensure problem_resource
    ```
+2. Check if the hitch warnings go away.
+3. Then consider finding an updated version, a better alternative, or ask the developer for tips.
 
-2. Test server performance without the resource to confirm it was causing the hitches
-3. Consider these alternatives:
-   - Source optimized versions from the FiveM forums
-   - Implement alternative resources with better performance characteristics
-   - Consult with the resource developer for optimization guidance
+## Keep Your Server Running Smoothly
 
-## FiveM Server Maintenance Best Practices
+Here are a few simple tips to avoid hitch warnings in the future:
 
-Implement these professional maintenance protocols to prevent future thread hitch warnings:
+1. **Regular Checks:** Run performance tests often to catch issues early.
+2. **Test First:** Try out new scripts on a test server before adding them live.
+3. **Manage Resources:** Don't overload your server with too many scripts at once.
+4. **Keep Updated:** Make sure FiveM and all your scripts are running the latest stable versions.
+5. **Listen to Feedback:** Pay attention if players report lag or other issues.
 
-1. **Scheduled Profiling**: Conduct regular profiling sessions to identify performance degradation early
-2. **Development Environment**: Test all new resources in a staging environment before deployment
-3. **Resource Management**: Maintain efficient resource utilization and avoid excessive script loading
-4. **Update Protocols**: Keep FiveM and all resources updated to their latest stable versions
-5. **Performance Monitoring**: Establish systems to collect and analyze player feedback regarding server performance
-
-By following these tips and making the most of our powerful infrastructure, you can boost your FiveM server’s performance and give your community a smoother, more enjoyable gaming experience.
+By following these tips and making the most of our powerful infrastructure, you can keep your FiveM server running smooth and give your players a great gaming experience.
