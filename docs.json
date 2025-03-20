@@ -32,6 +32,12 @@
             "pages": [
               "information/hardware"
             ]
+          },
+          {
+            "group": "FiveM Guides",
+            "pages": [
+              "fivem-guides/fivem-server-thread-hitch"
+            ]
           }
         ],
     "global": {
